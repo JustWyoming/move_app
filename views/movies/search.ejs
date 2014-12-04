@@ -1,0 +1,8 @@
+<% include header %>
+	<div class="results">	
+		<h2>Search Results</h2>
+		<% for(var i=0; i < movies.Search.length; i++){ %>
+			<h3><a href="/movies/results/<%= movies.Search[i].imdbID %>"><%= movies.Search[i].Title %></a></h3>
+		<% } %>
+	</div>
+<% include footer %>
