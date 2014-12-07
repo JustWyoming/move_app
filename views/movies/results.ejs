@@ -1,14 +1,20 @@
 <% include header %>
-<div class="row">
-	<div class=" movieDetail col-md-8">
+<div class="row poster">
+	<div class=" movieDetail col-md-6 col-md-offset-1">
 		<h3>Title: <%=Title%></h3>
 		<p><strong>Year: </strong><%=Year%></p>
 		<p><strong>Genre: </strong><%=Genre%></p>
 		<p><strong>Actors: </strong><%=Actors%></p>
 		<p><strong>Rotten Tomatoes Score: </strong><%=tomatoMeter%></p>
+		<p><strong>Plot: </strong><%=Plot%></p>
+
+		
 	</div>
-	<div class="col-md-4">
-		<aside class="poster"><img src=<%=Poster%> class="poster"></aside>
+
+	<div class="col-md-5">
+		<aside><img class="poster" src=<%=Poster%>></aside>
 	</div>
 </div>
+
+
 <% include footer %>

@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+var db = require('./models/index.js');
 var app = express();
 
 //var searchTerm = "mary"
@@ -47,7 +48,8 @@ app.get("/search", function(req, res){
 //  results routes
 app.get("/movies/results/:id", function(req, res){
   var id = req.params.id
-  request("http://www.omdbapi.com/?i=" + id + "&tomatoes=true&", function (error, response, body) {
+  var plot = req.params.plot
+  request("http://www.omdbapi.com/?i=" + id + "&tomatoes=true&" + plot, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var movies = JSON.parse(body);
       //console.log(movies["Search"]);
@@ -59,6 +61,44 @@ app.get("/movies/results/:id", function(req, res){
   })  
 })
 
+// watch list routes//
+app.post('/list', function (req, res) {
+  console.log(req.body.imdbCode);
+  imdbCode = req.body.imdbCode;
+  db.movedb.findOrCreate({where: {imdb_code: imdbCode}}).done(function (error, data, created) {
+    console.log('created');
+    if(created) {
+      console.log('here2');
+      request('http://www.omdbapi.com/?i='+imdbCode, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          var movieData = JSON.parse(body);
+          data.title = movieData.Title;
+          data.year = movieData.Year;
+          data.save().done(function (error, data) {
+            var data = db.movedb.findAll().done(function(error, data) {
+            res.render('movies/list', {data: data});
+            })          
+          })
+        }
+      })
+    } else {
+      console.log(db);
+      var data = db.movedb.findAll().done(function(error, data) {
+        res.render("movies/list", {data: data});
+      })
+
+    }
+  })
+})
+
+
+
+
+app.get('/list', function(req, res) {
+  var data = db.movedb.findAll().done(function(error, data) {
+    res.render('movies/list', {data: data});
+  })
+})
 
 
 

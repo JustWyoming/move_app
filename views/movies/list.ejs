@@ -1,0 +1,6 @@
+<%include header%>
+	<h2>Watch List For Jerks:</h2>
+	<% for(var i=0; i < data.length; i++){ %>
+			<h3><a href="/movies/list/<%= data[i].dataValues.imdb_code%>"><%= dataValues.Title %></a></h3>
+		<% } %>
+<%include footer%>

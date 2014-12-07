@@ -45,22 +45,25 @@ a:hover{
 h1{
 	font-family: 'Ultra', serif;
 	letter-spacing: .05em;
+
 }
 h2{
 	font-family: 'Ultra', serif;
 	font-size: 1.9em;
 	letter-spacing: .04em;
+	color: #bc0001;
 }
 h3{
 	font-family: 'Ultra', serif;
 	font-size: 1.2em;
 	letter-spacing: .04em;
-	line-height: .65em;
+	
+	color: #bc0001;
 }
 p{
 	font-family: 'Stint Ultra Expanded', cursive;
-
 }
+
 aside{
 	text-align: center;
 }
@@ -75,6 +78,7 @@ margin-top: 40px;
 position:fixed;
 
 }
+
 .foot{
 	margin-top: 15px;
 	font-size: .9em;
@@ -124,8 +128,33 @@ position:fixed;
 }
 .poster{
 	border-radius: 10px;
+	margin-top: 30px;
 }
 .indexImg{
+}
+
+.jerkRow{
+	margin-top: 50px;
+	margin-right: 50px;
+}
+.jerkO{
+	border-radius: 10px;
+	display:inline-block;
+	float:left;
+}
+.jerkText{
+	float: right;
+	display:inline-block;
+	font-family: 'Ultra', serif;
+	font-size: 1.2em;
+	letter-spacing: .04em;
+	line-height: 1.2em;
+
+
+}
+.about{
+	display: block;
+	padding: 20px;
 }
 
 @media(max-width: 500px;){

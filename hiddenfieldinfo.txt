@@ -1,0 +1,2 @@
+watch list button is a hidden button that has ejs code in the html document to pass the movie code, etc to the watch list.
+<input type="hidden" value= <%=%>
