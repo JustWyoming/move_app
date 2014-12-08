@@ -30,8 +30,8 @@ app.get("/about", function(req, res){
 // search routes
 
 app.get("/search", function(req, res){ 
-  var title = req.query.title;
-  request("http://www.omdbapi.com/?s=" + title, function (error, response, body) {
+  var movieTitle = req.query.title;
+  request("http://www.omdbapi.com/?s=" + movieTitle, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var movies = JSON.parse(body);
       //console.log(movies["Search"]);
@@ -65,7 +65,7 @@ app.get("/movies/results/:id", function(req, res){
 app.post('/list', function (req, res) {
   console.log(req.body.imdbCode);
   imdbCode = req.body.imdbCode;
-  db.movedb.findOrCreate({where: {imdb_code: imdbCode}}).done(function (error, data, created) {
+  db.MoveDB.findOrCreate({where: {imdb_code: imdbCode}}).done(function (error, data, created) {
     console.log('created');
     if(created) {
       console.log('here2');
@@ -75,7 +75,7 @@ app.post('/list', function (req, res) {
           data.title = movieData.Title;
           data.year = movieData.Year;
           data.save().done(function (error, data) {
-            var data = db.movedb.findAll().done(function(error, data) {
+            var data = db.MoveDB.findAll().done(function(error, data) {
             res.render('movies/list', {data: data});
             })          
           })
@@ -83,7 +83,7 @@ app.post('/list', function (req, res) {
       })
     } else {
       console.log(db);
-      var data = db.movedb.findAll().done(function(error, data) {
+      var data = db.MoveDB.findAll().done(function(error, data) {
         res.render("movies/list", {data: data});
       })
 
@@ -95,7 +95,7 @@ app.post('/list', function (req, res) {
 
 
 app.get('/list', function(req, res) {
-  var data = db.movedb.findAll().done(function(error, data) {
+  var data = db.MoveDB.findAll().done(function(error, data) {
     res.render('movies/list', {data: data});
   })
 })
