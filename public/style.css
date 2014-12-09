@@ -6,22 +6,40 @@ body{
 	color: #47413E;
 	font-family: 'Stint Ultra Expanded', cursive;
 }
+.container{
+	padding-bottom: 100px;
+}
 
-nav{
-	height: 50px;
+.navbar{
+	
 	background-color: #888583;
 	border-radius: 10px;
-	margin-top: 10px;
+	border-color: #888583 !important;;
+}
+.navbar-toggle .icon-bar {
+	border-color: #888583 !important;;	
+}
+.navbar-default .navbar-form {
+	border-color: #888583 !important;;
+}
+.navbar-collapse {
+	border-color: #888583 !important;;
+}
+nav ul li {
+	border: none !important;
+	text-decoration: none;
+	text-transform: uppercase;		
+	font-size: 1.05em;
 	
 }
-nav ul li{
-	display:inline;
-	text-decoration: none;
-	text-transform: uppercase;
-	float: right;
-	margin-top: 15px;
-	margin-right: 30px;
-	font-size: 1.05em;
+.navbar-default .navbar-nav>li>a {
+	color: #47413E;
+}
+.navbar-default .navbar-toggle {
+    border-color: #FAF1AB;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+   color: #FAF1AB;
 }
 .logo{
 	display: inline;
@@ -40,6 +58,7 @@ a:link{
 a:visited{
 		color: #47413E;
 }
+
 a:hover{
 	color: #FAF1AB;
 }
@@ -117,11 +136,11 @@ position:fixed;
 	color: #FAF1AB;
 }
 
-.movieDetail{
+/*.movieDetail{
 	max-width: 700px;
 	margin-left: 50px;
 
-}
+}*/
 .poster{
 	border-radius: 10px;
 	margin-top: 30px;
@@ -145,6 +164,7 @@ position:fixed;
 	font-size: 1.2em;
 	letter-spacing: .04em;
 	line-height: 1.2em;
+	text-align: justify;
 
 
 }
@@ -154,32 +174,32 @@ position:fixed;
 }
 .aboutJerks{
 	margin-top: 30px;
+	text-align: justify;
 
 }
 .aboutJerks img{
 	border-radius: 10px;
 }
 .watchButton{
+
 	background-color: #bc0001;
 	border-radius: 7px;	
 	color: #ccc;
 	width: 125px;
 }
+.deleteThis{
+	background-color: #bc0001;
+	border-radius: 7px;	
+	color: #ccc;
+	width: 125px;
+}
+.buttonDown{
+
+}
 
 @media(max-width: 500px;){
 
-.searchBar{
-	float:center;
-}
-nav ul li{
-	display:inline;
-	text-decoration: none;
-	text-transform: uppercase;
-	float: right;
-	margin-top: 15px;
-	margin-right: 10px;
-	font-size: .75em;
-}
+
 
 }
 

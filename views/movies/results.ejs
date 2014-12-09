@@ -1,7 +1,14 @@
 <% include header %>
 <div class="row poster">
 	<div class=" movieDetail col-md-6 col-md-offset-1">
-		<h3>Title: <%=Title%></h3>
+		<h3>Title: <%=Title%>  </h3><br/>
+
+		<form action="/list" method="post">
+			<input type="hidden" name="imdbCode" value="<%=imdbID %>">
+			<input type="hidden" name="title" value="<%=Title %>">
+			<input type="hidden" name="year" value="<%=Year %>">
+			<input class="watchButton" type="submit" name="watchList" data-imdbcode="<%=imdbID %>" data-title="<%=Title %>" data-year="<%=Year %>"value="Watch List">
+		</form><p>&nbsp;</p>
 		<p><strong>Year: </strong><%=Year%></p>
 		<p><strong>Genre: </strong><%=Genre%></p>
 		<p><strong>Actors: </strong><%=Actors%></p>

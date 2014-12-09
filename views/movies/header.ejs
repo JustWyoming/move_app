@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Movies for Jerks</title>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/style.css" type="text/css" rel="stylesheet">
@@ -9,41 +10,52 @@
 	<link href='http://fonts.googleapis.com/css?family=Stint+Ultra+Expanded' rel='stylesheet' type='text/css'>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="/script.js"></script>
 </head>
 <body>
 	<div class="container">
-		<div clas="row nav-navbar">
-		<div class="col-md-12, col-xs-12">
-		<nav>
-		<div class="logo"><a href="/"><img src="/jerk-cryll.png"></a></div>
-		
-			
-			<div class="searchBar">
-			<form action="/search" method="get">
-				<input type="text" name="title" class="field" placeholder="movie title.">
-				<input type="submit" value="submit" class="button">
-			</form>
-			</div>
-
-			<ul>
-
-				<li><a href="/list/">Watch List</a></li>
-				<li><a href="/about/">About</a></li>
-				<li><a href="/">Home</a></li>
 	
-			</ul>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><img src="/jerk-cryll.png"></a>
+    </div>
 
-		</nav>
-		</div>
-		</div>
-		<div class ="titleWrapper text-center">
-			<h1>Movies For Jerks</h1>
-		</div><!-- end titleWrapper -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      <form class="navbar-form navbar-left" action="/search" method="get">
+        <div class="form-group">
+        		<input type="text" name="title" class="field" placeholder="movie title.">
+				<input type="submit" value="submit" class="button">	
+        </div>
+        
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        	
+			
+			<li><a href="/">Home</a></li>
+			<li><a href="/about/">About</a></li>
+			<li><a href="/list/">Watch List</a></li>
+        
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 		
 		
+		
 
-		 <div class="row"><!-- <!header -->
-			<div class="col-md-12"><!-- wrapper columns -->  
+		 
 				
 				
 

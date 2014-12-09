@@ -1,6 +1,13 @@
 <%include header%>
-	<h2>Watch List For Jerks:</h2>
+	<h2 class="text-center">Watch List For Jerks:</h2>
 	<% for(var i=0; i < data.length; i++){ %>
-			<h3><a href="/movies/results/<%= data[i].dataValues.imdb_code%>"><%= data[i].dataValues.title %></a></h3>
+			<div class="row">
+			<div class="col-md-7 col-md-offset-1"><h3><a href="/movies/results/<%= data[i].dataValues.imdb_code%>"><%= data[i].dataValues.title %></a></h3></div>
+			<!-- <form action="/delete" method="post">
+				<input type="hidden" name="deleteCode" value="<%=data[i].dataValues.imdb_code%>" > -->
+				<br/><input class="deleteThis col-md-3 col-md-offset-1" data-id="<%=data[i].dataValues.id%>"type="submit" name="deleteList" value="Remove">
+			<!-- </form>  -->
+			</div>
 		<% } %>
+
 <%include footer%>

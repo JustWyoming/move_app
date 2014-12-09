@@ -63,42 +63,68 @@ app.get("/movies/results/:id", function(req, res){
 
 // watch list routes//
 app.post('/list', function (req, res) {
-  console.log(req.body.imdbCode);
-  imdbCode = req.body.imdbCode;
-  db.MoveDB.findOrCreate({where: {imdb_code: imdbCode}}).done(function (error, data, created) {
-    console.log('created');
-    if(created) {
-      console.log('here2');
-      request('http://www.omdbapi.com/?i='+imdbCode, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-          var movieData = JSON.parse(body);
-          data.title = movieData.Title;
-          data.year = movieData.Year;
-          data.save().done(function (error, data) {
-            var data = db.MoveDB.findAll().done(function(error, data) {
-            res.render('movies/list', {data: data});
-            })          
-          })
-        }
-      })
-    } else {
-      console.log(db);
-      var data = db.MoveDB.findAll().done(function(error, data) {
-        res.render("movies/list", {data: data});
-      })
+  // res.send("ok");
+  // console.log("inside");
+  // console.log(req.body.imdbCode);
 
-    }
+  // res.send(req.body);
+  // return;
+
+  var watchItem = {
+    imdb_code : req.body.imdbCode,
+    year : req.body.year,
+    title : req.body.title
+  };
+  // console.log('imdbcode',imdbCode);
+  db.MoveDB.findOrCreate({where: watchItem}).done(function (error, data, created) {
+    if(error) throw error;
+    // console.log(arguments);
+    // console.log('created');\
+    console.log(watchItem);
+    res.send({data: data,created: created});
+    
+
+
+
+
+    // if(created) {
+      // console.log('here2');
+            // res.send({data: data});
+            //var data = db.MoveDB.findAll({order: 'title ASC'}).done(function(error, data) {
+            //})          
+    // } else {
+      // console.log(db);
+      // var data = db.MoveDB.findAll({order: 'title ASC'}).done(function(error, data) {
+        // res.render("movies/list", {data: data});
+        // res.send({data: data,created: created});
+      // })
+    // }
   })
-})
-
+});
 
 
 
 app.get('/list', function(req, res) {
-  var data = db.MoveDB.findAll().done(function(error, data) {
+  var data = db.MoveDB.findAll({order: 'title ASC'}).done(function(error, data) {
     res.render('movies/list', {data: data});
   })
 })
+
+//delete routes//
+
+app.delete("/list/:id", function(req, res){
+  // res.send(req.body);
+  db.MoveDB.find({where: {id: req.params.id}}).then(function(deleteList){
+    deleteList.destroy().success(function(){
+      // res.redirect("/list")
+     res.send({deleted: "taco"});
+    })
+  })
+});
+
+
+
+
 
 
 

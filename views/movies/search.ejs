@@ -4,10 +4,7 @@
 		<% for(var i=0; i < movies.Search.length; i++){ %>
 			<h3><a href="/movies/results/<%= movies.Search[i].imdbID %>"><%= movies.Search[i].Title %></a></h3>
 		
-			<form action="/list" method="post">
-			<input type="hidden" name="imdbCode" value="<%=movies.Search[i].imdbID%>" >
-			<input class="watchButton" type="submit" name="watchList" value="Watch List">
-		</form>
+		
 		<% } %>
 	</div>
 <% include footer %>
