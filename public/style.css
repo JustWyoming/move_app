@@ -155,7 +155,8 @@ position:fixed;
 .jerkO{
 	border-radius: 10px;
 	display:inline-block;
-	float:left;
+	width: 100%;
+	height: auto;
 }
 .jerkText{
 	float: right;
@@ -183,6 +184,14 @@ position:fixed;
 .watchButton{
 
 	background-color: #bc0001;
+	border-radius: 7px;	
+	color: #ccc;
+	width: 125px;
+}
+
+.listedJerk{
+
+	background-color: #A19D9A;
 	border-radius: 7px;	
 	color: #ccc;
 	width: 125px;

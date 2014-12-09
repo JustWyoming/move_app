@@ -22,7 +22,7 @@ $('.watchButton').on('click', function(event){
 	// alert($(this).data('imdbcode'));
 	$.post('/list', {imdbCode: $(this).data('imdbcode'), title: $(this).data('title'), year: $(this).data('year')}, function(data){
 		// alert("is this thing on")
-		addToList.closest('form').replaceWith("Added To List, Jerk")
+		addToList.closest('input').val("Listed, Jerk").addClass('listedJerk')
 	})
 })
 
