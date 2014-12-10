@@ -34,14 +34,13 @@ app.get("/search", function(req, res){
   request("http://www.omdbapi.com/?s=" + movieTitle, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var movies = JSON.parse(body);
-      //console.log(movies["Search"]);
+      movies.searchResults = movieTitle;
+      // console.log(movies["Search"]);
       // res.render("moviePage", stuff)
       res.render("movies/search", {movies: movies});
-    }
-   
-    
-  })
-  })
+      }
+    })
+})
 
 
 
@@ -52,14 +51,13 @@ app.get("/movies/results/:id", function(req, res){
   request("http://www.omdbapi.com/?i=" + id + "&tomatoes=true&" + plot, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var movies = JSON.parse(body);
-      //console.log(movies["Search"]);
+      movies.prevSearch = req.query.lastSearch;
+      // console.log(movies["Search"]);
       // res.render("moviePage", stuff)
       res.render("movies/results", movies);
     }
-   
-    
-  })  
-})
+    })
+})  
 
 // watch list routes//
 app.post('/list', function (req, res) {
@@ -83,9 +81,6 @@ app.post('/list', function (req, res) {
     console.log(watchItem);
     res.send({data: data,created: created});
     
-
-
-
 
     // if(created) {
       // console.log('here2');
@@ -117,7 +112,7 @@ app.delete("/list/:id", function(req, res){
   db.MoveDB.find({where: {id: req.params.id}}).then(function(deleteList){
     deleteList.destroy().success(function(){
       // res.redirect("/list")
-     res.send({deleted: "taco"});
+      res.send({deleted: "taco"});
     })
   })
 });

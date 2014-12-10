@@ -1,0 +1,3 @@
+watchlist, add a button for comments which goes to a route like list/:9/comments
+
+tags is a many to many - which would be tag which goes to field for text that finds or creates a tag and associates back to movie using join table (tags page that lists tags)
