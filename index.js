@@ -5,7 +5,7 @@ var db = require('./models/index.js');
 var app = express();
 
 //var searchTerm = "mary"
-
+// this is only on your banch
 // app settings
 app.set("view engine", "ejs");
 
