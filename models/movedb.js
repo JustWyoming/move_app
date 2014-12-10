@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var MoveDB = sequelize.define("MoveDB", {
+  var movedb = sequelize.define("movedb", {
     imdb_code: DataTypes.STRING,
     title: DataTypes.STRING,
     year: DataTypes.STRING
@@ -9,9 +9,10 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        models.movedb.hasMany(models.content)
       }
     }
   });
 
-  return MoveDB;
+  return movedb;
 };

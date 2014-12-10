@@ -202,8 +202,19 @@ position:fixed;
 	color: #ccc;
 	width: 125px;
 }
+.commentThis{
+	background-color: #bc0001;
+	border-radius: 7px;	
+	color: #ccc;
+	width: 125px;
+}
 .buttonDown{
 
+}
+.breadCrumb{
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: .75em;
 }
 
 @media(max-width: 500px;){

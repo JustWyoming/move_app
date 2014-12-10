@@ -5,7 +5,10 @@
 			<div class="col-md-7 col-md-offset-1"><h3><a href="/movies/results/<%= data[i].dataValues.imdb_code%>"><%= data[i].dataValues.title %></a></h3></div>
 			<!-- <form action="/delete" method="post">
 				<input type="hidden" name="deleteCode" value="<%=data[i].dataValues.imdb_code%>" > -->
-				<br/><input class="deleteThis col-md-3 col-md-offset-1" data-id="<%=data[i].dataValues.id%>"type="submit" name="deleteList" value="Remove">
+				<form action="/movies/results/<%= data[i].id%>/comments" method="get">
+				<a href="/list/:id/comments"><input class="commentThis col-md-1" data-id="<%=data[i].dataValues.id%>"type="submit" name="comment" value="Comments"></a><br/>
+				</form>
+				<input class="deleteThis col-md-3 col-md-offset-1" data-id="<%=data[i].dataValues.id%>"type="submit" name="deleteList" value="Remove">
 			<!-- </form>  -->
 			</div>
 		<% } %>
