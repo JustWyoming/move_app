@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var request = require('request');
 var db = require('./models/index.js');
@@ -12,6 +13,7 @@ app.set("view engine", "ejs");
 //app use settings telling node to parse data from POST
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(__dirname + '/public')); // this tells node to serve files from public folder(css)
+app.use(session({secret: 'pissed kitty', resave: false, saveUninitialized: true}))
 
 
 // index routes
@@ -31,17 +33,18 @@ app.get("/about", function(req, res){
 
 app.get("/search", function(req, res){ 
   var movieTitle = req.query.title;
+  req.session.lastPage = "/search?title="+ movieTitle; //for session get
   request("http://www.omdbapi.com/?s=" + movieTitle, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var movies = JSON.parse(body);
       movies.searchResults = movieTitle;
       // console.log(movies["Search"]);
       // res.render("moviePage", stuff)
-      res.render("movies/search", {movies: movies});
+
+      res.render("movies/search", {movies: movies, searchResults: movieTitle});
       }
     })
 })
-
 
 
 //  results routes
@@ -51,9 +54,10 @@ app.get("/movies/results/:id", function(req, res){
   request("http://www.omdbapi.com/?i=" + id + "&tomatoes=true&" + plot, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var movies = JSON.parse(body);
-      movies.prevSearch = req.query.lastSearch;
+     movies.prevSearch = req.session.lastPage;
       // console.log(movies["Search"]);
       // res.render("moviePage", stuff)
+        //req.session.lastPage = '/movies/search';
       res.render("movies/results", movies);
     }
     })
@@ -79,6 +83,7 @@ app.post('/list', function (req, res) {
     // console.log(arguments);
     // console.log('created');\
     console.log(watchItem);
+    
     res.send({data: data,created: created});
     
 
@@ -100,8 +105,10 @@ app.post('/list', function (req, res) {
 
 
 app.get('/list', function(req, res) {
-  var data = db.MoveDB.findAll({order: 'title ASC'}).done(function(error, data) {
-    res.render('movies/list', {data: data});
+  db.MoveDB.findAll({order: 'title ASC'}).done(function(error, data) {
+   
+    req.session.lastPage = "movies/list";
+    res.render('movies/list', {data: data || []});
   })
 })
 
